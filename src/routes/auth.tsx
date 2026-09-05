@@ -51,14 +51,14 @@ function AuthScreen() {
     }
     setError("");
     setBusy("form");
-    setTimeout(
-      () =>
-        navigate({
-          to: "/meripehchaan",
-          search: { name: mode === "signup" ? name.trim() : "" },
-        }),
-      700,
-    );
+    if (mode === "signup") {
+      try {
+        window.sessionStorage.setItem("shrenikart.pendingName", name.trim());
+      } catch {
+        /* ignore */
+      }
+    }
+    setTimeout(() => navigate({ to: "/meripehchaan" }), 700);
   };
 
   return (
@@ -147,7 +147,7 @@ function AuthScreen() {
           type="button"
           onClick={() => {
             setBusy("mp");
-            setTimeout(() => navigate({ to: "/meripehchaan", search: { name: "" } }), 600);
+            setTimeout(() => navigate({ to: "/meripehchaan" }), 600);
           }}
           disabled={busy !== "none"}
           className="flex h-14 w-full items-center justify-center gap-3 rounded-2xl border-2 border-secondary bg-card text-base font-semibold text-secondary transition-transform active:scale-[0.98] disabled:opacity-70"
