@@ -10,13 +10,16 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AiRouteImport } from './routes/ai'
 import { Route as AuthRouteImport } from './routes/auth'
+import { Route as BazaarRouteImport } from './routes/bazaar'
 import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as HelpRouteImport } from './routes/help'
 import { Route as MeripehchaanRouteImport } from './routes/meripehchaan'
 import { Route as OnboardingRouteImport } from './routes/onboarding'
 import { Route as OrdersRouteImport } from './routes/orders'
 import { Route as ProductsRouteImport } from './routes/products'
+import { Route as VaniRouteImport } from './routes/vani'
 import { Route as VerifiedRouteImport } from './routes/verified'
 import { Route as InquiriesIndexRouteImport } from './routes/inquiries/index'
 import { Route as InquiriesIdRouteImport } from './routes/inquiries/$id'
@@ -26,9 +29,19 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AiRoute = AiRouteImport.update({
+  id: '/ai',
+  path: '/ai',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AuthRoute = AuthRouteImport.update({
   id: '/auth',
   path: '/auth',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BazaarRoute = BazaarRouteImport.update({
+  id: '/bazaar',
+  path: '/bazaar',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DashboardRoute = DashboardRouteImport.update({
@@ -61,6 +74,11 @@ const ProductsRoute = ProductsRouteImport.update({
   path: '/products',
   getParentRoute: () => rootRouteImport,
 } as any)
+const VaniRoute = VaniRouteImport.update({
+  id: '/vani',
+  path: '/vani',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const VerifiedRoute = VerifiedRouteImport.update({
   id: '/verified',
   path: '/verified',
@@ -79,26 +97,32 @@ const InquiriesIdRoute = InquiriesIdRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/ai': typeof AiRoute
   '/auth': typeof AuthRoute
+  '/bazaar': typeof BazaarRoute
   '/dashboard': typeof DashboardRoute
   '/help': typeof HelpRoute
   '/meripehchaan': typeof MeripehchaanRoute
   '/onboarding': typeof OnboardingRoute
   '/orders': typeof OrdersRoute
   '/products': typeof ProductsRoute
+  '/vani': typeof VaniRoute
   '/verified': typeof VerifiedRoute
   '/inquiries/$id': typeof InquiriesIdRoute
   '/inquiries/': typeof InquiriesIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/ai': typeof AiRoute
   '/auth': typeof AuthRoute
+  '/bazaar': typeof BazaarRoute
   '/dashboard': typeof DashboardRoute
   '/help': typeof HelpRoute
   '/meripehchaan': typeof MeripehchaanRoute
   '/onboarding': typeof OnboardingRoute
   '/orders': typeof OrdersRoute
   '/products': typeof ProductsRoute
+  '/vani': typeof VaniRoute
   '/verified': typeof VerifiedRoute
   '/inquiries/$id': typeof InquiriesIdRoute
   '/inquiries': typeof InquiriesIndexRoute
@@ -106,13 +130,16 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/ai': typeof AiRoute
   '/auth': typeof AuthRoute
+  '/bazaar': typeof BazaarRoute
   '/dashboard': typeof DashboardRoute
   '/help': typeof HelpRoute
   '/meripehchaan': typeof MeripehchaanRoute
   '/onboarding': typeof OnboardingRoute
   '/orders': typeof OrdersRoute
   '/products': typeof ProductsRoute
+  '/vani': typeof VaniRoute
   '/verified': typeof VerifiedRoute
   '/inquiries/$id': typeof InquiriesIdRoute
   '/inquiries/': typeof InquiriesIndexRoute
@@ -121,39 +148,48 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/ai'
     | '/auth'
+    | '/bazaar'
     | '/dashboard'
     | '/help'
     | '/meripehchaan'
     | '/onboarding'
     | '/orders'
     | '/products'
+    | '/vani'
     | '/verified'
     | '/inquiries/$id'
     | '/inquiries/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/ai'
     | '/auth'
+    | '/bazaar'
     | '/dashboard'
     | '/help'
     | '/meripehchaan'
     | '/onboarding'
     | '/orders'
     | '/products'
+    | '/vani'
     | '/verified'
     | '/inquiries/$id'
     | '/inquiries'
   id:
     | '__root__'
     | '/'
+    | '/ai'
     | '/auth'
+    | '/bazaar'
     | '/dashboard'
     | '/help'
     | '/meripehchaan'
     | '/onboarding'
     | '/orders'
     | '/products'
+    | '/vani'
     | '/verified'
     | '/inquiries/$id'
     | '/inquiries/'
@@ -161,13 +197,16 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AiRoute: typeof AiRoute
   AuthRoute: typeof AuthRoute
+  BazaarRoute: typeof BazaarRoute
   DashboardRoute: typeof DashboardRoute
   HelpRoute: typeof HelpRoute
   MeripehchaanRoute: typeof MeripehchaanRoute
   OnboardingRoute: typeof OnboardingRoute
   OrdersRoute: typeof OrdersRoute
   ProductsRoute: typeof ProductsRoute
+  VaniRoute: typeof VaniRoute
   VerifiedRoute: typeof VerifiedRoute
   InquiriesIdRoute: typeof InquiriesIdRoute
   InquiriesIndexRoute: typeof InquiriesIndexRoute
@@ -182,11 +221,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/ai': {
+      id: '/ai'
+      path: '/ai'
+      fullPath: '/ai'
+      preLoaderRoute: typeof AiRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/auth': {
       id: '/auth'
       path: '/auth'
       fullPath: '/auth'
       preLoaderRoute: typeof AuthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/bazaar': {
+      id: '/bazaar'
+      path: '/bazaar'
+      fullPath: '/bazaar'
+      preLoaderRoute: typeof BazaarRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/dashboard': {
@@ -231,6 +284,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProductsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/vani': {
+      id: '/vani'
+      path: '/vani'
+      fullPath: '/vani'
+      preLoaderRoute: typeof VaniRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/verified': {
       id: '/verified'
       path: '/verified'
@@ -257,13 +317,16 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AiRoute: AiRoute,
   AuthRoute: AuthRoute,
+  BazaarRoute: BazaarRoute,
   DashboardRoute: DashboardRoute,
   HelpRoute: HelpRoute,
   MeripehchaanRoute: MeripehchaanRoute,
   OnboardingRoute: OnboardingRoute,
   OrdersRoute: OrdersRoute,
   ProductsRoute: ProductsRoute,
+  VaniRoute: VaniRoute,
   VerifiedRoute: VerifiedRoute,
   InquiriesIdRoute: InquiriesIdRoute,
   InquiriesIndexRoute: InquiriesIndexRoute,
