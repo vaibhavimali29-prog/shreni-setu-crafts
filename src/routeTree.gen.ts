@@ -18,7 +18,11 @@ import { Route as HelpRouteImport } from './routes/help'
 import { Route as MeripehchaanRouteImport } from './routes/meripehchaan'
 import { Route as OnboardingRouteImport } from './routes/onboarding'
 import { Route as OrdersRouteImport } from './routes/orders'
+import { Route as PayRouteImport } from './routes/pay'
 import { Route as ProductsRouteImport } from './routes/products'
+import { Route as ProfileRouteImport } from './routes/profile'
+import { Route as SettingsRouteImport } from './routes/settings'
+import { Route as SetuRouteImport } from './routes/setu'
 import { Route as VaniRouteImport } from './routes/vani'
 import { Route as VerifiedRouteImport } from './routes/verified'
 import { Route as InquiriesIndexRouteImport } from './routes/inquiries/index'
@@ -69,9 +73,29 @@ const OrdersRoute = OrdersRouteImport.update({
   path: '/orders',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PayRoute = PayRouteImport.update({
+  id: '/pay',
+  path: '/pay',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ProductsRoute = ProductsRouteImport.update({
   id: '/products',
   path: '/products',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProfileRoute = ProfileRouteImport.update({
+  id: '/profile',
+  path: '/profile',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SettingsRoute = SettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SetuRoute = SetuRouteImport.update({
+  id: '/setu',
+  path: '/setu',
   getParentRoute: () => rootRouteImport,
 } as any)
 const VaniRoute = VaniRouteImport.update({
@@ -105,7 +129,11 @@ export interface FileRoutesByFullPath {
   '/meripehchaan': typeof MeripehchaanRoute
   '/onboarding': typeof OnboardingRoute
   '/orders': typeof OrdersRoute
+  '/pay': typeof PayRoute
   '/products': typeof ProductsRoute
+  '/profile': typeof ProfileRoute
+  '/settings': typeof SettingsRoute
+  '/setu': typeof SetuRoute
   '/vani': typeof VaniRoute
   '/verified': typeof VerifiedRoute
   '/inquiries/$id': typeof InquiriesIdRoute
@@ -121,7 +149,11 @@ export interface FileRoutesByTo {
   '/meripehchaan': typeof MeripehchaanRoute
   '/onboarding': typeof OnboardingRoute
   '/orders': typeof OrdersRoute
+  '/pay': typeof PayRoute
   '/products': typeof ProductsRoute
+  '/profile': typeof ProfileRoute
+  '/settings': typeof SettingsRoute
+  '/setu': typeof SetuRoute
   '/vani': typeof VaniRoute
   '/verified': typeof VerifiedRoute
   '/inquiries/$id': typeof InquiriesIdRoute
@@ -138,7 +170,11 @@ export interface FileRoutesById {
   '/meripehchaan': typeof MeripehchaanRoute
   '/onboarding': typeof OnboardingRoute
   '/orders': typeof OrdersRoute
+  '/pay': typeof PayRoute
   '/products': typeof ProductsRoute
+  '/profile': typeof ProfileRoute
+  '/settings': typeof SettingsRoute
+  '/setu': typeof SetuRoute
   '/vani': typeof VaniRoute
   '/verified': typeof VerifiedRoute
   '/inquiries/$id': typeof InquiriesIdRoute
@@ -156,7 +192,11 @@ export interface FileRouteTypes {
     | '/meripehchaan'
     | '/onboarding'
     | '/orders'
+    | '/pay'
     | '/products'
+    | '/profile'
+    | '/settings'
+    | '/setu'
     | '/vani'
     | '/verified'
     | '/inquiries/$id'
@@ -172,7 +212,11 @@ export interface FileRouteTypes {
     | '/meripehchaan'
     | '/onboarding'
     | '/orders'
+    | '/pay'
     | '/products'
+    | '/profile'
+    | '/settings'
+    | '/setu'
     | '/vani'
     | '/verified'
     | '/inquiries/$id'
@@ -188,7 +232,11 @@ export interface FileRouteTypes {
     | '/meripehchaan'
     | '/onboarding'
     | '/orders'
+    | '/pay'
     | '/products'
+    | '/profile'
+    | '/settings'
+    | '/setu'
     | '/vani'
     | '/verified'
     | '/inquiries/$id'
@@ -205,7 +253,11 @@ export interface RootRouteChildren {
   MeripehchaanRoute: typeof MeripehchaanRoute
   OnboardingRoute: typeof OnboardingRoute
   OrdersRoute: typeof OrdersRoute
+  PayRoute: typeof PayRoute
   ProductsRoute: typeof ProductsRoute
+  ProfileRoute: typeof ProfileRoute
+  SettingsRoute: typeof SettingsRoute
+  SetuRoute: typeof SetuRoute
   VaniRoute: typeof VaniRoute
   VerifiedRoute: typeof VerifiedRoute
   InquiriesIdRoute: typeof InquiriesIdRoute
@@ -277,11 +329,39 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof OrdersRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/pay': {
+      id: '/pay'
+      path: '/pay'
+      fullPath: '/pay'
+      preLoaderRoute: typeof PayRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/products': {
       id: '/products'
       path: '/products'
       fullPath: '/products'
       preLoaderRoute: typeof ProductsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/profile': {
+      id: '/profile'
+      path: '/profile'
+      fullPath: '/profile'
+      preLoaderRoute: typeof ProfileRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/settings': {
+      id: '/settings'
+      path: '/settings'
+      fullPath: '/settings'
+      preLoaderRoute: typeof SettingsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/setu': {
+      id: '/setu'
+      path: '/setu'
+      fullPath: '/setu'
+      preLoaderRoute: typeof SetuRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/vani': {
@@ -325,7 +405,11 @@ const rootRouteChildren: RootRouteChildren = {
   MeripehchaanRoute: MeripehchaanRoute,
   OnboardingRoute: OnboardingRoute,
   OrdersRoute: OrdersRoute,
+  PayRoute: PayRoute,
   ProductsRoute: ProductsRoute,
+  ProfileRoute: ProfileRoute,
+  SettingsRoute: SettingsRoute,
+  SetuRoute: SetuRoute,
   VaniRoute: VaniRoute,
   VerifiedRoute: VerifiedRoute,
   InquiriesIdRoute: InquiriesIdRoute,
