@@ -11,6 +11,8 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AuthRouteImport } from './routes/auth'
+import { Route as DashboardRouteImport } from './routes/dashboard'
+import { Route as HelpRouteImport } from './routes/help'
 import { Route as MeripehchaanRouteImport } from './routes/meripehchaan'
 import { Route as OnboardingRouteImport } from './routes/onboarding'
 import { Route as VerifiedRouteImport } from './routes/verified'
@@ -23,6 +25,16 @@ const IndexRoute = IndexRouteImport.update({
 const AuthRoute = AuthRouteImport.update({
   id: '/auth',
   path: '/auth',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DashboardRoute = DashboardRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HelpRoute = HelpRouteImport.update({
+  id: '/help',
+  path: '/help',
   getParentRoute: () => rootRouteImport,
 } as any)
 const MeripehchaanRoute = MeripehchaanRouteImport.update({
@@ -44,6 +56,8 @@ const VerifiedRoute = VerifiedRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
+  '/dashboard': typeof DashboardRoute
+  '/help': typeof HelpRoute
   '/meripehchaan': typeof MeripehchaanRoute
   '/onboarding': typeof OnboardingRoute
   '/verified': typeof VerifiedRoute
@@ -51,6 +65,8 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
+  '/dashboard': typeof DashboardRoute
+  '/help': typeof HelpRoute
   '/meripehchaan': typeof MeripehchaanRoute
   '/onboarding': typeof OnboardingRoute
   '/verified': typeof VerifiedRoute
@@ -59,21 +75,47 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
+  '/dashboard': typeof DashboardRoute
+  '/help': typeof HelpRoute
   '/meripehchaan': typeof MeripehchaanRoute
   '/onboarding': typeof OnboardingRoute
   '/verified': typeof VerifiedRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/auth' | '/meripehchaan' | '/onboarding' | '/verified'
+  fullPaths:
+    | '/'
+    | '/auth'
+    | '/dashboard'
+    | '/help'
+    | '/meripehchaan'
+    | '/onboarding'
+    | '/verified'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/auth' | '/meripehchaan' | '/onboarding' | '/verified'
-  id: '__root__' | '/' | '/auth' | '/meripehchaan' | '/onboarding' | '/verified'
+  to:
+    | '/'
+    | '/auth'
+    | '/dashboard'
+    | '/help'
+    | '/meripehchaan'
+    | '/onboarding'
+    | '/verified'
+  id:
+    | '__root__'
+    | '/'
+    | '/auth'
+    | '/dashboard'
+    | '/help'
+    | '/meripehchaan'
+    | '/onboarding'
+    | '/verified'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AuthRoute: typeof AuthRoute
+  DashboardRoute: typeof DashboardRoute
+  HelpRoute: typeof HelpRoute
   MeripehchaanRoute: typeof MeripehchaanRoute
   OnboardingRoute: typeof OnboardingRoute
   VerifiedRoute: typeof VerifiedRoute
@@ -93,6 +135,20 @@ declare module '@tanstack/react-router' {
       path: '/auth'
       fullPath: '/auth'
       preLoaderRoute: typeof AuthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/dashboard': {
+      id: '/dashboard'
+      path: '/dashboard'
+      fullPath: '/dashboard'
+      preLoaderRoute: typeof DashboardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/help': {
+      id: '/help'
+      path: '/help'
+      fullPath: '/help'
+      preLoaderRoute: typeof HelpRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/meripehchaan': {
@@ -122,6 +178,8 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AuthRoute: AuthRoute,
+  DashboardRoute: DashboardRoute,
+  HelpRoute: HelpRoute,
   MeripehchaanRoute: MeripehchaanRoute,
   OnboardingRoute: OnboardingRoute,
   VerifiedRoute: VerifiedRoute,
