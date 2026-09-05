@@ -11,6 +11,9 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AuthRouteImport } from './routes/auth'
+import { Route as MeripehchaanRouteImport } from './routes/meripehchaan'
+import { Route as OnboardingRouteImport } from './routes/onboarding'
+import { Route as VerifiedRouteImport } from './routes/verified'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -22,31 +25,58 @@ const AuthRoute = AuthRouteImport.update({
   path: '/auth',
   getParentRoute: () => rootRouteImport,
 } as any)
+const MeripehchaanRoute = MeripehchaanRouteImport.update({
+  id: '/meripehchaan',
+  path: '/meripehchaan',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const OnboardingRoute = OnboardingRouteImport.update({
+  id: '/onboarding',
+  path: '/onboarding',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const VerifiedRoute = VerifiedRouteImport.update({
+  id: '/verified',
+  path: '/verified',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
+  '/meripehchaan': typeof MeripehchaanRoute
+  '/onboarding': typeof OnboardingRoute
+  '/verified': typeof VerifiedRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
+  '/meripehchaan': typeof MeripehchaanRoute
+  '/onboarding': typeof OnboardingRoute
+  '/verified': typeof VerifiedRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
+  '/meripehchaan': typeof MeripehchaanRoute
+  '/onboarding': typeof OnboardingRoute
+  '/verified': typeof VerifiedRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/auth'
+  fullPaths: '/' | '/auth' | '/meripehchaan' | '/onboarding' | '/verified'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/auth'
-  id: '__root__' | '/' | '/auth'
+  to: '/' | '/auth' | '/meripehchaan' | '/onboarding' | '/verified'
+  id: '__root__' | '/' | '/auth' | '/meripehchaan' | '/onboarding' | '/verified'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AuthRoute: typeof AuthRoute
+  MeripehchaanRoute: typeof MeripehchaanRoute
+  OnboardingRoute: typeof OnboardingRoute
+  VerifiedRoute: typeof VerifiedRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -65,12 +95,36 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/meripehchaan': {
+      id: '/meripehchaan'
+      path: '/meripehchaan'
+      fullPath: '/meripehchaan'
+      preLoaderRoute: typeof MeripehchaanRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/onboarding': {
+      id: '/onboarding'
+      path: '/onboarding'
+      fullPath: '/onboarding'
+      preLoaderRoute: typeof OnboardingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/verified': {
+      id: '/verified'
+      path: '/verified'
+      fullPath: '/verified'
+      preLoaderRoute: typeof VerifiedRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AuthRoute: AuthRoute,
+  MeripehchaanRoute: MeripehchaanRoute,
+  OnboardingRoute: OnboardingRoute,
+  VerifiedRoute: VerifiedRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
