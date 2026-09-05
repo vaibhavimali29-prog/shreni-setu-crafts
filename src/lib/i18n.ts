@@ -118,7 +118,7 @@ const strings: Record<string, Dict> = {
 
 export function t(key: string, lang: LanguageCode, vars?: Record<string, string>) {
   const entry = strings[key];
-  let value = entry?.[lang] ?? entry?.en ?? key;
+  let value = entry?.[lang] ?? entry?.["en"] ?? key;
   if (vars) {
     for (const [k, v] of Object.entries(vars)) value = value.replace(`{${k}}`, v);
   }
