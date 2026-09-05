@@ -75,9 +75,9 @@ export function ScreenHeader({
   action,
 }: {
   title: string;
-  subtitle?: string;
-  back?: string;
-  action?: ReactNode;
+  subtitle?: string | undefined;
+  back?: string | undefined;
+  action?: ReactNode | undefined;
 }) {
   return (
     <header className="sticky top-0 z-20 border-b border-border bg-background/90 px-5 pt-5 pb-4 backdrop-blur">

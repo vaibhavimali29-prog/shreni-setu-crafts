@@ -15,7 +15,11 @@ import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as HelpRouteImport } from './routes/help'
 import { Route as MeripehchaanRouteImport } from './routes/meripehchaan'
 import { Route as OnboardingRouteImport } from './routes/onboarding'
+import { Route as OrdersRouteImport } from './routes/orders'
+import { Route as ProductsRouteImport } from './routes/products'
 import { Route as VerifiedRouteImport } from './routes/verified'
+import { Route as InquiriesIndexRouteImport } from './routes/inquiries/index'
+import { Route as InquiriesIdRouteImport } from './routes/inquiries/$id'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -47,9 +51,29 @@ const OnboardingRoute = OnboardingRouteImport.update({
   path: '/onboarding',
   getParentRoute: () => rootRouteImport,
 } as any)
+const OrdersRoute = OrdersRouteImport.update({
+  id: '/orders',
+  path: '/orders',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProductsRoute = ProductsRouteImport.update({
+  id: '/products',
+  path: '/products',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const VerifiedRoute = VerifiedRouteImport.update({
   id: '/verified',
   path: '/verified',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const InquiriesIndexRoute = InquiriesIndexRouteImport.update({
+  id: '/inquiries/',
+  path: '/inquiries/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const InquiriesIdRoute = InquiriesIdRouteImport.update({
+  id: '/inquiries/$id',
+  path: '/inquiries/$id',
   getParentRoute: () => rootRouteImport,
 } as any)
 
@@ -60,7 +84,11 @@ export interface FileRoutesByFullPath {
   '/help': typeof HelpRoute
   '/meripehchaan': typeof MeripehchaanRoute
   '/onboarding': typeof OnboardingRoute
+  '/orders': typeof OrdersRoute
+  '/products': typeof ProductsRoute
   '/verified': typeof VerifiedRoute
+  '/inquiries/$id': typeof InquiriesIdRoute
+  '/inquiries/': typeof InquiriesIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -69,7 +97,11 @@ export interface FileRoutesByTo {
   '/help': typeof HelpRoute
   '/meripehchaan': typeof MeripehchaanRoute
   '/onboarding': typeof OnboardingRoute
+  '/orders': typeof OrdersRoute
+  '/products': typeof ProductsRoute
   '/verified': typeof VerifiedRoute
+  '/inquiries/$id': typeof InquiriesIdRoute
+  '/inquiries': typeof InquiriesIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -79,7 +111,11 @@ export interface FileRoutesById {
   '/help': typeof HelpRoute
   '/meripehchaan': typeof MeripehchaanRoute
   '/onboarding': typeof OnboardingRoute
+  '/orders': typeof OrdersRoute
+  '/products': typeof ProductsRoute
   '/verified': typeof VerifiedRoute
+  '/inquiries/$id': typeof InquiriesIdRoute
+  '/inquiries/': typeof InquiriesIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -90,7 +126,11 @@ export interface FileRouteTypes {
     | '/help'
     | '/meripehchaan'
     | '/onboarding'
+    | '/orders'
+    | '/products'
     | '/verified'
+    | '/inquiries/$id'
+    | '/inquiries/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -99,7 +139,11 @@ export interface FileRouteTypes {
     | '/help'
     | '/meripehchaan'
     | '/onboarding'
+    | '/orders'
+    | '/products'
     | '/verified'
+    | '/inquiries/$id'
+    | '/inquiries'
   id:
     | '__root__'
     | '/'
@@ -108,7 +152,11 @@ export interface FileRouteTypes {
     | '/help'
     | '/meripehchaan'
     | '/onboarding'
+    | '/orders'
+    | '/products'
     | '/verified'
+    | '/inquiries/$id'
+    | '/inquiries/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -118,7 +166,11 @@ export interface RootRouteChildren {
   HelpRoute: typeof HelpRoute
   MeripehchaanRoute: typeof MeripehchaanRoute
   OnboardingRoute: typeof OnboardingRoute
+  OrdersRoute: typeof OrdersRoute
+  ProductsRoute: typeof ProductsRoute
   VerifiedRoute: typeof VerifiedRoute
+  InquiriesIdRoute: typeof InquiriesIdRoute
+  InquiriesIndexRoute: typeof InquiriesIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -165,11 +217,39 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof OnboardingRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/orders': {
+      id: '/orders'
+      path: '/orders'
+      fullPath: '/orders'
+      preLoaderRoute: typeof OrdersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/products': {
+      id: '/products'
+      path: '/products'
+      fullPath: '/products'
+      preLoaderRoute: typeof ProductsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/verified': {
       id: '/verified'
       path: '/verified'
       fullPath: '/verified'
       preLoaderRoute: typeof VerifiedRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/inquiries/': {
+      id: '/inquiries/'
+      path: '/inquiries'
+      fullPath: '/inquiries/'
+      preLoaderRoute: typeof InquiriesIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/inquiries/$id': {
+      id: '/inquiries/$id'
+      path: '/inquiries/$id'
+      fullPath: '/inquiries/$id'
+      preLoaderRoute: typeof InquiriesIdRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
@@ -182,7 +262,11 @@ const rootRouteChildren: RootRouteChildren = {
   HelpRoute: HelpRoute,
   MeripehchaanRoute: MeripehchaanRoute,
   OnboardingRoute: OnboardingRoute,
+  OrdersRoute: OrdersRoute,
+  ProductsRoute: ProductsRoute,
   VerifiedRoute: VerifiedRoute,
+  InquiriesIdRoute: InquiriesIdRoute,
+  InquiriesIndexRoute: InquiriesIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
