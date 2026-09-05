@@ -10,33 +10,271 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AddProductRouteImport } from './routes/add-product'
+import { Route as AiRouteImport } from './routes/ai'
+import { Route as AuthRouteImport } from './routes/auth'
+import { Route as BazaarRouteImport } from './routes/bazaar'
+import { Route as DashboardRouteImport } from './routes/dashboard'
+import { Route as HelpRouteImport } from './routes/help'
+import { Route as MeripehchaanRouteImport } from './routes/meripehchaan'
+import { Route as OnboardingRouteImport } from './routes/onboarding'
+import { Route as OrdersRouteImport } from './routes/orders'
+import { Route as PayRouteImport } from './routes/pay'
+import { Route as ProductsRouteImport } from './routes/products'
+import { Route as ProfileRouteImport } from './routes/profile'
+import { Route as SettingsRouteImport } from './routes/settings'
+import { Route as SetuRouteImport } from './routes/setu'
+import { Route as VaniRouteImport } from './routes/vani'
+import { Route as VerifiedRouteImport } from './routes/verified'
+import { Route as InquiriesIndexRouteImport } from './routes/inquiries/index'
+import { Route as InquiriesIdRouteImport } from './routes/inquiries/$id'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AddProductRoute = AddProductRouteImport.update({
+  id: '/add-product',
+  path: '/add-product',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AiRoute = AiRouteImport.update({
+  id: '/ai',
+  path: '/ai',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthRoute = AuthRouteImport.update({
+  id: '/auth',
+  path: '/auth',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BazaarRoute = BazaarRouteImport.update({
+  id: '/bazaar',
+  path: '/bazaar',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DashboardRoute = DashboardRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HelpRoute = HelpRouteImport.update({
+  id: '/help',
+  path: '/help',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MeripehchaanRoute = MeripehchaanRouteImport.update({
+  id: '/meripehchaan',
+  path: '/meripehchaan',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const OnboardingRoute = OnboardingRouteImport.update({
+  id: '/onboarding',
+  path: '/onboarding',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const OrdersRoute = OrdersRouteImport.update({
+  id: '/orders',
+  path: '/orders',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PayRoute = PayRouteImport.update({
+  id: '/pay',
+  path: '/pay',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProductsRoute = ProductsRouteImport.update({
+  id: '/products',
+  path: '/products',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProfileRoute = ProfileRouteImport.update({
+  id: '/profile',
+  path: '/profile',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SettingsRoute = SettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SetuRoute = SetuRouteImport.update({
+  id: '/setu',
+  path: '/setu',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const VaniRoute = VaniRouteImport.update({
+  id: '/vani',
+  path: '/vani',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const VerifiedRoute = VerifiedRouteImport.update({
+  id: '/verified',
+  path: '/verified',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const InquiriesIndexRoute = InquiriesIndexRouteImport.update({
+  id: '/inquiries/',
+  path: '/inquiries/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const InquiriesIdRoute = InquiriesIdRouteImport.update({
+  id: '/inquiries/$id',
+  path: '/inquiries/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/add-product': typeof AddProductRoute
+  '/ai': typeof AiRoute
+  '/auth': typeof AuthRoute
+  '/bazaar': typeof BazaarRoute
+  '/dashboard': typeof DashboardRoute
+  '/help': typeof HelpRoute
+  '/meripehchaan': typeof MeripehchaanRoute
+  '/onboarding': typeof OnboardingRoute
+  '/orders': typeof OrdersRoute
+  '/pay': typeof PayRoute
+  '/products': typeof ProductsRoute
+  '/profile': typeof ProfileRoute
+  '/settings': typeof SettingsRoute
+  '/setu': typeof SetuRoute
+  '/vani': typeof VaniRoute
+  '/verified': typeof VerifiedRoute
+  '/inquiries/$id': typeof InquiriesIdRoute
+  '/inquiries/': typeof InquiriesIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/add-product': typeof AddProductRoute
+  '/ai': typeof AiRoute
+  '/auth': typeof AuthRoute
+  '/bazaar': typeof BazaarRoute
+  '/dashboard': typeof DashboardRoute
+  '/help': typeof HelpRoute
+  '/meripehchaan': typeof MeripehchaanRoute
+  '/onboarding': typeof OnboardingRoute
+  '/orders': typeof OrdersRoute
+  '/pay': typeof PayRoute
+  '/products': typeof ProductsRoute
+  '/profile': typeof ProfileRoute
+  '/settings': typeof SettingsRoute
+  '/setu': typeof SetuRoute
+  '/vani': typeof VaniRoute
+  '/verified': typeof VerifiedRoute
+  '/inquiries/$id': typeof InquiriesIdRoute
+  '/inquiries': typeof InquiriesIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/add-product': typeof AddProductRoute
+  '/ai': typeof AiRoute
+  '/auth': typeof AuthRoute
+  '/bazaar': typeof BazaarRoute
+  '/dashboard': typeof DashboardRoute
+  '/help': typeof HelpRoute
+  '/meripehchaan': typeof MeripehchaanRoute
+  '/onboarding': typeof OnboardingRoute
+  '/orders': typeof OrdersRoute
+  '/pay': typeof PayRoute
+  '/products': typeof ProductsRoute
+  '/profile': typeof ProfileRoute
+  '/settings': typeof SettingsRoute
+  '/setu': typeof SetuRoute
+  '/vani': typeof VaniRoute
+  '/verified': typeof VerifiedRoute
+  '/inquiries/$id': typeof InquiriesIdRoute
+  '/inquiries/': typeof InquiriesIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/add-product'
+    | '/ai'
+    | '/auth'
+    | '/bazaar'
+    | '/dashboard'
+    | '/help'
+    | '/meripehchaan'
+    | '/onboarding'
+    | '/orders'
+    | '/pay'
+    | '/products'
+    | '/profile'
+    | '/settings'
+    | '/setu'
+    | '/vani'
+    | '/verified'
+    | '/inquiries/$id'
+    | '/inquiries/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/add-product'
+    | '/ai'
+    | '/auth'
+    | '/bazaar'
+    | '/dashboard'
+    | '/help'
+    | '/meripehchaan'
+    | '/onboarding'
+    | '/orders'
+    | '/pay'
+    | '/products'
+    | '/profile'
+    | '/settings'
+    | '/setu'
+    | '/vani'
+    | '/verified'
+    | '/inquiries/$id'
+    | '/inquiries'
+  id:
+    | '__root__'
+    | '/'
+    | '/add-product'
+    | '/ai'
+    | '/auth'
+    | '/bazaar'
+    | '/dashboard'
+    | '/help'
+    | '/meripehchaan'
+    | '/onboarding'
+    | '/orders'
+    | '/pay'
+    | '/products'
+    | '/profile'
+    | '/settings'
+    | '/setu'
+    | '/vani'
+    | '/verified'
+    | '/inquiries/$id'
+    | '/inquiries/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AddProductRoute: typeof AddProductRoute
+  AiRoute: typeof AiRoute
+  AuthRoute: typeof AuthRoute
+  BazaarRoute: typeof BazaarRoute
+  DashboardRoute: typeof DashboardRoute
+  HelpRoute: typeof HelpRoute
+  MeripehchaanRoute: typeof MeripehchaanRoute
+  OnboardingRoute: typeof OnboardingRoute
+  OrdersRoute: typeof OrdersRoute
+  PayRoute: typeof PayRoute
+  ProductsRoute: typeof ProductsRoute
+  ProfileRoute: typeof ProfileRoute
+  SettingsRoute: typeof SettingsRoute
+  SetuRoute: typeof SetuRoute
+  VaniRoute: typeof VaniRoute
+  VerifiedRoute: typeof VerifiedRoute
+  InquiriesIdRoute: typeof InquiriesIdRoute
+  InquiriesIndexRoute: typeof InquiriesIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +286,155 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/add-product': {
+      id: '/add-product'
+      path: '/add-product'
+      fullPath: '/add-product'
+      preLoaderRoute: typeof AddProductRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/ai': {
+      id: '/ai'
+      path: '/ai'
+      fullPath: '/ai'
+      preLoaderRoute: typeof AiRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/auth': {
+      id: '/auth'
+      path: '/auth'
+      fullPath: '/auth'
+      preLoaderRoute: typeof AuthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/bazaar': {
+      id: '/bazaar'
+      path: '/bazaar'
+      fullPath: '/bazaar'
+      preLoaderRoute: typeof BazaarRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/dashboard': {
+      id: '/dashboard'
+      path: '/dashboard'
+      fullPath: '/dashboard'
+      preLoaderRoute: typeof DashboardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/help': {
+      id: '/help'
+      path: '/help'
+      fullPath: '/help'
+      preLoaderRoute: typeof HelpRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/meripehchaan': {
+      id: '/meripehchaan'
+      path: '/meripehchaan'
+      fullPath: '/meripehchaan'
+      preLoaderRoute: typeof MeripehchaanRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/onboarding': {
+      id: '/onboarding'
+      path: '/onboarding'
+      fullPath: '/onboarding'
+      preLoaderRoute: typeof OnboardingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/orders': {
+      id: '/orders'
+      path: '/orders'
+      fullPath: '/orders'
+      preLoaderRoute: typeof OrdersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/pay': {
+      id: '/pay'
+      path: '/pay'
+      fullPath: '/pay'
+      preLoaderRoute: typeof PayRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/products': {
+      id: '/products'
+      path: '/products'
+      fullPath: '/products'
+      preLoaderRoute: typeof ProductsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/profile': {
+      id: '/profile'
+      path: '/profile'
+      fullPath: '/profile'
+      preLoaderRoute: typeof ProfileRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/settings': {
+      id: '/settings'
+      path: '/settings'
+      fullPath: '/settings'
+      preLoaderRoute: typeof SettingsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/setu': {
+      id: '/setu'
+      path: '/setu'
+      fullPath: '/setu'
+      preLoaderRoute: typeof SetuRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/vani': {
+      id: '/vani'
+      path: '/vani'
+      fullPath: '/vani'
+      preLoaderRoute: typeof VaniRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/verified': {
+      id: '/verified'
+      path: '/verified'
+      fullPath: '/verified'
+      preLoaderRoute: typeof VerifiedRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/inquiries/': {
+      id: '/inquiries/'
+      path: '/inquiries'
+      fullPath: '/inquiries/'
+      preLoaderRoute: typeof InquiriesIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/inquiries/$id': {
+      id: '/inquiries/$id'
+      path: '/inquiries/$id'
+      fullPath: '/inquiries/$id'
+      preLoaderRoute: typeof InquiriesIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AddProductRoute: AddProductRoute,
+  AiRoute: AiRoute,
+  AuthRoute: AuthRoute,
+  BazaarRoute: BazaarRoute,
+  DashboardRoute: DashboardRoute,
+  HelpRoute: HelpRoute,
+  MeripehchaanRoute: MeripehchaanRoute,
+  OnboardingRoute: OnboardingRoute,
+  OrdersRoute: OrdersRoute,
+  PayRoute: PayRoute,
+  ProductsRoute: ProductsRoute,
+  ProfileRoute: ProfileRoute,
+  SettingsRoute: SettingsRoute,
+  SetuRoute: SetuRoute,
+  VaniRoute: VaniRoute,
+  VerifiedRoute: VerifiedRoute,
+  InquiriesIdRoute: InquiriesIdRoute,
+  InquiriesIndexRoute: InquiriesIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
