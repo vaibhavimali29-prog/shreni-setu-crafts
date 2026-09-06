@@ -8,6 +8,8 @@ import {
   products as seedProducts,
 } from "./data";
 import type { Inquiry, Order, Product } from "./data";
+import { emptyOnboarding } from "./onboarding";
+import type { OnboardingState, OnboardingStepKey } from "./onboarding";
 
 const STORAGE_KEY = "shrenikart.session.v1";
 
@@ -16,6 +18,7 @@ interface SessionState {
   authenticated: boolean;
   onboarded: boolean;
   verifiedName: string;
+  onboarding: OnboardingState;
 }
 
 interface StoreValue extends SessionState {
@@ -28,6 +31,8 @@ interface StoreValue extends SessionState {
   signIn: (name?: string) => void;
   signOut: () => void;
   completeOnboarding: () => void;
+  updateOnboarding: (patch: Partial<OnboardingState>) => void;
+  completeStep: (key: OnboardingStepKey, nextIndex: number) => void;
   addProduct: (product: Product) => void;
   replyToInquiry: (id: string, text: string) => void;
   advanceOrder: (id: string) => void;
@@ -38,11 +43,13 @@ const defaultSession: SessionState = {
   authenticated: false,
   onboarded: false,
   verifiedName: defaultArtisan.name,
+  onboarding: emptyOnboarding,
 };
 
 const StoreContext = createContext<StoreValue | null>(null);
 
 const ORDER_FLOW: Order["status"][] = ["New", "Confirmed", "Preparing", "Shipped", "Delivered"];
+
 
 export function StoreProvider({ children }: { children: ReactNode }) {
   const [session, setSession] = useState<SessionState>(defaultSession);
@@ -54,7 +61,14 @@ export function StoreProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     try {
       const raw = window.localStorage.getItem(STORAGE_KEY);
-      if (raw) setSession({ ...defaultSession, ...(JSON.parse(raw) as Partial<SessionState>) });
+      if (raw) {
+        const parsed = JSON.parse(raw) as Partial<SessionState>;
+        setSession({
+          ...defaultSession,
+          ...parsed,
+          onboarding: { ...emptyOnboarding, ...(parsed.onboarding ?? {}) },
+        });
+      }
     } catch {
       /* ignore */
     }
@@ -74,7 +88,12 @@ export function StoreProvider({ children }: { children: ReactNode }) {
     () => ({
       ...session,
       ready,
-      artisan: { ...defaultArtisan, name: session.verifiedName },
+      artisan: {
+        ...defaultArtisan,
+        name: session.onboarding.profile.fullName || session.verifiedName,
+        craftCategory: session.onboarding.craft.category || defaultArtisan.craftCategory,
+        region: session.onboarding.profile.location || defaultArtisan.region,
+      },
       products: productList,
       orders: orderList,
       inquiries: inquiryList,
@@ -83,6 +102,20 @@ export function StoreProvider({ children }: { children: ReactNode }) {
         persist({ ...session, authenticated: true, verifiedName: name || session.verifiedName }),
       signOut: () => persist({ ...defaultSession, language: session.language }),
       completeOnboarding: () => persist({ ...session, onboarded: true }),
+      updateOnboarding: (patch) =>
+        persist({ ...session, onboarding: { ...session.onboarding, ...patch } }),
+      completeStep: (key, nextIndex) =>
+        persist({
+          ...session,
+          onboarding: {
+            ...session.onboarding,
+            stepIndex: nextIndex,
+            completedSteps: session.onboarding.completedSteps.includes(key)
+              ? session.onboarding.completedSteps
+              : [...session.onboarding.completedSteps, key],
+          },
+        }),
+
       addProduct: (product) => setProductList((prev) => [product, ...prev]),
       replyToInquiry: (id, text) =>
         setInquiryList((prev) =>
