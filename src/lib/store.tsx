@@ -81,7 +81,12 @@ export function StoreProvider({ children }: { children: ReactNode }) {
     () => ({
       ...session,
       ready,
-      artisan: { ...defaultArtisan, name: session.verifiedName },
+      artisan: {
+        ...defaultArtisan,
+        name: session.onboarding.profile.fullName || session.verifiedName,
+        craftCategory: session.onboarding.craft.category || defaultArtisan.craftCategory,
+        region: session.onboarding.profile.location || defaultArtisan.region,
+      },
       products: productList,
       orders: orderList,
       inquiries: inquiryList,
@@ -90,6 +95,20 @@ export function StoreProvider({ children }: { children: ReactNode }) {
         persist({ ...session, authenticated: true, verifiedName: name || session.verifiedName }),
       signOut: () => persist({ ...defaultSession, language: session.language }),
       completeOnboarding: () => persist({ ...session, onboarded: true }),
+      updateOnboarding: (patch) =>
+        persist({ ...session, onboarding: { ...session.onboarding, ...patch } }),
+      completeStep: (key, nextIndex) =>
+        persist({
+          ...session,
+          onboarding: {
+            ...session.onboarding,
+            stepIndex: nextIndex,
+            completedSteps: session.onboarding.completedSteps.includes(key)
+              ? session.onboarding.completedSteps
+              : [...session.onboarding.completedSteps, key],
+          },
+        }),
+
       addProduct: (product) => setProductList((prev) => [product, ...prev]),
       replyToInquiry: (id, text) =>
         setInquiryList((prev) =>
