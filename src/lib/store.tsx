@@ -8,6 +8,8 @@ import {
   products as seedProducts,
 } from "./data";
 import type { Inquiry, Order, Product } from "./data";
+import { emptyOnboarding } from "./onboarding";
+import type { OnboardingState, OnboardingStepKey } from "./onboarding";
 
 const STORAGE_KEY = "shrenikart.session.v1";
 
@@ -16,6 +18,7 @@ interface SessionState {
   authenticated: boolean;
   onboarded: boolean;
   verifiedName: string;
+  onboarding: OnboardingState;
 }
 
 interface StoreValue extends SessionState {
@@ -28,6 +31,8 @@ interface StoreValue extends SessionState {
   signIn: (name?: string) => void;
   signOut: () => void;
   completeOnboarding: () => void;
+  updateOnboarding: (patch: Partial<OnboardingState>) => void;
+  completeStep: (key: OnboardingStepKey, nextIndex: number) => void;
   addProduct: (product: Product) => void;
   replyToInquiry: (id: string, text: string) => void;
   advanceOrder: (id: string) => void;
@@ -38,11 +43,13 @@ const defaultSession: SessionState = {
   authenticated: false,
   onboarded: false,
   verifiedName: defaultArtisan.name,
+  onboarding: emptyOnboarding,
 };
 
 const StoreContext = createContext<StoreValue | null>(null);
 
 const ORDER_FLOW: Order["status"][] = ["New", "Confirmed", "Preparing", "Shipped", "Delivered"];
+
 
 export function StoreProvider({ children }: { children: ReactNode }) {
   const [session, setSession] = useState<SessionState>(defaultSession);
