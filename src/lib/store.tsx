@@ -61,7 +61,14 @@ export function StoreProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     try {
       const raw = window.localStorage.getItem(STORAGE_KEY);
-      if (raw) setSession({ ...defaultSession, ...(JSON.parse(raw) as Partial<SessionState>) });
+      if (raw) {
+        const parsed = JSON.parse(raw) as Partial<SessionState>;
+        setSession({
+          ...defaultSession,
+          ...parsed,
+          onboarding: { ...emptyOnboarding, ...(parsed.onboarding ?? {}) },
+        });
+      }
     } catch {
       /* ignore */
     }
